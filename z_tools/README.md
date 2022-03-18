@@ -22,3 +22,7 @@ macOS 用の z_tools バイナリです．
 ```sh
 qemu-system-i386 helloos.img
 ```
+
+```sh
+./nask helloos.nas helloos_nas.img
+```
