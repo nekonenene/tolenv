@@ -19,6 +19,8 @@ macOS 用の z_tools バイナリです．
 
 ## 実行例
 
+先に１つ上のフォルダの README に書かれている方法に従って `make up` をおこなっておくこと。
+
 ```sh
 qemu-system-i386 helloos.img
 ```
