@@ -6,6 +6,8 @@
 ; DW命令: data word の略。word とは、アセンブラの世界では16bitの意味、つまり2バイト
 ; DD命令: data double-word の略。32bitのこと。つまり4バイト
 
+CYLS EQU 10 ; CYLS = シリンダーの意味の定数。10を設定。
+
   ORG  0x7c00         ; このプログラムがどこに読み込まれるのか
 
 ; 以下は標準的なFAT12フォーマットフロッピーディスクのための記述
@@ -68,7 +70,15 @@ next:
   MOV  ES,AX          ; ADD ES,0x20 という命令がないのでこうしている
   ADD  CL,1           ; CLに1を足す
   CMP  CL,18          ; CLを18と比較
-  JBE  readloop       ; JBE = jump if below or equal: CLが18以下ならreadloopへ
+  JBE  readloop       ; JBE = jump if below or equal: CLが18以下なら readloop へ
+  MOV  CL,1
+  ADD  DH,1
+  CMP  DH,2
+  JB   readloop       ; JB = jmp if below: DHが2未満なら readloop へ
+  MOV  DH,0
+  ADD  CH,1
+  CMP  CH,CYLS
+  JB   readloop       ; CH < CYLS だったら readloop へ
 
 fin:
   HLT                 ; 何かあるまでCPUを停止させる
