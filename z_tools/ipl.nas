@@ -44,6 +44,7 @@ entry:
   MOV  DH,0           ; ヘッド0
   MOV  CL,2           ; セクタ2
 
+readloop:
   MOV  SI,0           ; 失敗回数を数えるレジスタ
 
 retry:
@@ -52,7 +53,7 @@ retry:
   MOV  BX,0
   MOV  DL,0x00        ; Aドライブ
   INT  0x13           ; ディスクBIOS呼び出し
-  JNC  fin            ; JNC = jump if not carry: キャリーフラグが0だったらfinにジャンプ
+  JNC  next           ; JNC = jump if not carry: キャリーフラグが0だったら（エラーが起きなければ）nextにジャンプ
   ADD  SI,1           ; SIに1を足す
   CMP  SI,5           ; SIを5と比較
   JAE  error          ; JAE = jump if above or equal: SIが5以上ならエラーに
@@ -60,6 +61,14 @@ retry:
   MOV  DL,0x00        ; Aドライブ
   INT  0x13           ; ドライブのリセット
   JMP  retry
+
+next:
+  MOV  AX,ES          ; アドレスを 0x200 進める
+  ADD  AX,0x0020
+  MOV  ES,AX          ; ADD ES,0x20 という命令がないのでこうしている
+  ADD  CL,1           ; CLに1を足す
+  CMP  CL,18          ; CLを18と比較
+  JBE  readloop       ; JBE = jump if below or equal: CLが18以下ならreadloopへ
 
 fin:
   HLT                 ; 何かあるまでCPUを停止させる
