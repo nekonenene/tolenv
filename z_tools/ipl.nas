@@ -1,6 +1,11 @@
 ; haribote-ipl
 ; TAB=2
 
+; DB命令: data byte の略。1バイトを直接書く命令
+; RESB命令: reserve byte の略。xバイト空けてくれという命令
+; DW命令: data word の略。word とは、アセンブラの世界では16bitの意味、つまり2バイト
+; DD命令: data double-word の略。32bitのこと。つまり4バイト
+
   ORG  0x7c00         ; このプログラムがどこに読み込まれるのか
 
 ; 以下は標準的なFAT12フォーマットフロッピーディスクのための記述
@@ -44,7 +49,7 @@ entry:
   MOV  BX,0
   MOV  DL,0x00        ; Aドライブ
   INT  0x13           ; ディスクBIOS呼び出し
-  JC   error
+  JC   error          ; JC命令: jump if carry の略。キャリーフラグが1だったらジャンプ
 
 fin:
   HLT                 ; 何かあるまでCPUを停止させる
