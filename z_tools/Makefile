@@ -1,7 +1,6 @@
 TOOLPATH = ../z_tools/
-MAKE     = $(TOOLPATH)make.exe -r
-NASK     = $(TOOLPATH)nask.exe
-EDIMG    = $(TOOLPATH)edimg.exe
+NASK     = $(TOOLPATH)nask
+EDIMG    = $(TOOLPATH)edimg
 IMGTOL   = $(TOOLPATH)imgtol.com
 COPY     = copy
 DEL      = del
