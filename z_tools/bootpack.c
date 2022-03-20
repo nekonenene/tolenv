@@ -1,5 +1,5 @@
 void HariMain(void) {
 fin:
-  /* ‚±‚±‚ÉHLT‚ð“ü‚ê‚½‚¢‚Ì‚¾‚ªACŒ¾Œê‚Å‚ÍHLT‚ªŽg‚¦‚È‚¢I */
+  /* ã“ã“ã«HLTã‚’å…¥ã‚ŒãŸã„ã®ã ãŒã€Cè¨€èªžã§ã¯HLTãŒä½¿ãˆãªã„ï¼ */
   goto fin;
 }
