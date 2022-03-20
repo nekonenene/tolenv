@@ -1,7 +1,11 @@
 # z_tools_osx
 
+from: https://github.com/HariboteOS/tolenv/
+
 macOS 用の z_tools バイナリです．
 `z_tools` にフォルダ名を変更してご利用ください．
+
+Makefile 書き換えの参考: https://github.com/sandai/30nichideosjisaku
 
 ## 依存しているパッケージ・ソフトウエア
 
